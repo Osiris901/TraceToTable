@@ -1,0 +1,18 @@
+@model Microsoft.AspNetCore.Http.FormFile
+@{
+    ViewData["Title"] = "Online Tools";
+}
+
+@using (Html.BeginForm("AfdProConverter", "OnlineTools", FormMethod.Post, new {enctype = "multipart/form-data"})) {
+    <h3>AfdPro Converter</h3>
+    Html.Encode(Html.ValidationSummary(false));
+    <input type="file" name="upFile" required="required"/>
+    <input type="submit" class="button" value="Конвертировать"/>
+}
+
+@if (TempData["ErrorMsg"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>При обработке запроса возникла ошибка!</strong> @TempData["ErrorMsg"]
+    </div>
+}
